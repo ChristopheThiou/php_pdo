@@ -42,8 +42,18 @@ class ProductRepository
         $query->execute();
         $find = $query->fetch();
         if ($find == false) {
-            return;
+            return "Hihi ça marche po";
         }
-        return new Product($find['id'], $find['label'], $find['price'], $find['description']);;
+        return new Product($find['id'], $find['label'], $find['price'], $find['description']);
+    }
+    public function update(Product $product,)
+    {
+        $connection = new PDO("mysql:host=localhost;dbname=php_pdo", "root", "");
+        $query = $connection->prepare("UPDATE product SET label = :label, price = :price, description = :description WHERE id = :id");
+        $query->bindValue(':label', $product->getLabel());
+        $query->bindValue(':price', $product->getPrice());
+        $query->bindValue(':description', $product->getDescription());
+        $query->bindValue(':id', $product->getId());
+        $query->execute();
     }
 }
