@@ -46,7 +46,7 @@ class ProductRepository
         }
         return new Product($find['id'], $find['label'], $find['price'], $find['description']);
     }
-    public function update(Product $product,)
+    public function update(Product $product)
     {
         $connection = new PDO("mysql:host=localhost;dbname=php_pdo", "root", "");
         $query = $connection->prepare("UPDATE product SET label = :label, price = :price, description = :description WHERE id = :id");
